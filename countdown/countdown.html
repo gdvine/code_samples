@@ -1,0 +1,40 @@
+<html>
+<head>
+	<script type="text/javascript" src="jquery_1.9.js"></script>
+	<script type="text/javascript" src="jquery.countdown.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('h1').countdown({
+				duration: 600,
+				layout: "$h:$m:$s",
+				onTick: {
+					tickPoint: 7199,
+					fireIfUnderTickPoint: true,
+					action: function() {
+						console.log('onTick');
+					}
+				},
+				onExpiry: function(){
+					$(this).css('color','red');
+				}
+			});
+			
+			$('h2').countdown({
+				duration: 3,
+				layout: "$m:$s",
+				onExpiry: function(){
+					$(this).css('color','red');
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+<h1>Time Remaining: $m:$s</h1>
+<h2>Time Remaining: $m:$s</h2>
+
+</body>
+
+</html>
