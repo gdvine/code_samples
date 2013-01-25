@@ -8,11 +8,11 @@
 *** USAGE ***
 *
 *	$('h1').countdown({
-*		duration: 900,
+*		duration: 900,   // in seconds
 *		layout: "Time Remaining: $h:$m:$s",
 *		display2DigitMinutes: false,
 *		onTick: {
-*			tickPoint: 898,
+*			tickPoint: 898, // how many seconds remain when callback to be fired
 *			fireIfUnderTickPoint: true,
 *			action: function() {
 *				console.log('onTick');
