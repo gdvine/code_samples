@@ -67,7 +67,6 @@
 			var instance = $.data(target, 'countdown');
 			
 			if (instance) {
-				this.resetExtraOptions(instance.options, options);
 				this.removeExtraOptions(instance.options, options);
 				this.addTarget(target, instance);				
 				this.parseLayout(target, instance);
@@ -77,34 +76,7 @@
 				this.iterateDuration(instance);
 			}
 		},
-		
-		resetExtraOptions: function(base, options) {
-			var changingOptions = this.diffOptions(options);
-			
-			if (changingOptions) {
-				this.removeCustomNumberedOptions(base);
-			}
-		},
-		
-		diffOptions: function(options) {
-			for (var n in options) {
-				if (n != 'whichOptions' && n.match(/[Ll]abels/)) {
-					return true;
-					break;
-				}
-			}
-			
-			return false;
-		},
-		
-		removeCustomNumberedOptions: function(base) {
-			for (var n in base) {
-				if (n.match(/[Ll]abels[0-9]/)) {
-					base[n] = null;
-				}
-			}
-		},
-		
+				
 		removeExtraOptions: function(base, options) {
 			$.extend(base, options);
 			
@@ -135,7 +107,7 @@
 			}
 			
 			this.handleOnTick(target, instance);
-			this.checkDuration(target, instance);
+			this.checkTimeLeft(target, instance);
 		},
 		
 		initLayoutChunks: function(instance) {
@@ -168,7 +140,7 @@
 			return instance;
 		},
 		
-		checkDuration: function(target, instance) {
+		checkTimeLeft: function(target, instance) {
 			var timeIsLeft = instance.options.duration >= 0,
 				noTimeIsLeft = instance.options.duration <= 0;
 			
@@ -373,9 +345,11 @@
 		
 	});	// end $.extend()
 	
-	$.countdown = new Countdown(); // singleton instance
+	// singleton instance
+	$.countdown = new Countdown();
 	
-	$.fn.countdown = function(options) {	// add to jQuery function array
+	// add to jQuery function array
+	$.fn.countdown = function(options) {
 		$.countdown.initCountdown(this, options || {});
 	};
 
