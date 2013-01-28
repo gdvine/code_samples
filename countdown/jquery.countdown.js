@@ -335,9 +335,11 @@
         // in case needed later    
         destroyCountdown: function(target) {
             var $target = $(target);
+            
             if (!$target.hasClass(this.markerClassName)) {
                 return;
             }
+            
             this.removeTarget(target);
             $target.removeClass(this.markerClassName).empty();
             $.removeData(target, 'countdown');
