@@ -4,37 +4,71 @@
     <script type="text/javascript" src="jquery_1.9.js"></script>
     <script type="text/javascript" src="jquery.countdown.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $('h1').countdown({
-                duration: 600,
-                layout: "$h:$m:$s",
-                onTick: {
-                    tickPoint: 7199,
-                    fireIfUnderTickPoint: true,
-                    action: function() {
-                        console.log('onTick');
+        function startTimers() {
+            $('h1')
+                .removeClass('hidden')
+                .countdown({
+                    duration: 600,
+                    layout: "$h:$m:$s",
+                    onTick: {
+                        tickPoint: 598,
+                        fireIfUnderTickPoint: true,
+                        action: function() {
+                            $('p').removeClass('hidden');
+                        }
+                    },
+                    onExpiry: function(){
+                        
                     }
-                },
-                onExpiry: function(){
-                    $(this).css('color','red');
-                }
-            });
+                });
             
-            $('h2').countdown({
-                duration: 3,
-                layout: "$m:$s",
-                onExpiry: function(){
-                    $(this).css('color','red');
-                }
+            $('h2')
+                .removeClass('hidden')
+                .countdown({
+                    duration: 8,
+                    layout: "$m:$s",
+                    onExpiry: function(){
+                        $(this).css('color','red').text('Expired');
+                    }
+                });
+        }
+        
+        $(function() {
+            $('#startTimers').click(function() {
+                startTimers();
+                $(this).addClass('hidden');
+                return false;
             });
         });
     </script>
+    
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+        
+        h1 {
+            margin-bottom: 0;
+        }
+        
+        p {
+            margin-top: 0;
+            font-style: italic;
+        }
+        
+        h2 {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>Time Remaining: $m:$s</h1>
-<h2>Time Remaining: $m:$s</h2>
+<a href="#" id="startTimers"><h3>Start the Timers</h3></a>
+
+<h1 class="hidden">Time Remaining: $m:$s</h1>
+<p class="hidden">tickPoint reached</p>
+<h2 class="hidden">Time Remaining: $m:$s</h2>
 
 </body>
 
