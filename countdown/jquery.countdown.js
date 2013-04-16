@@ -2,7 +2,6 @@
 *
 * jQuery Countdown Plugin
 * Author: Gabriel D Vine
-* 8/2010
 *
 *
 *** USAGE ***
