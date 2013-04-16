@@ -331,7 +331,6 @@
             $(target).html(instance.options.layout);
         },
         
-        // in case needed later    
         destroyCountdown: function(target) {
             var $target = $(target);
             
