@@ -2,6 +2,7 @@
 *
 * jQuery Countdown Plugin
 * Author: Gabriel D Vine
+* 8/2010
 *
 *
 *** USAGE ***
@@ -10,15 +11,16 @@
 *        duration: 900,   // in seconds
 *        layout: "Time Remaining: $h:$m:$s",
 *        display2DigitMinutes: false,
-*        onTick: {
-*            tickPoint: 898, // how many seconds remain when callback to be fired
+*        onTick: {  // callback at a certain time
+*            secondsRemaining: 898,
 *            fireIfUnderTickPoint: true,
 *            action: function() {
-*                console.log('onTick');
+*                console.log('We have reached 898 seconds remaining.');
 *            }
 *        },
-*        onExpiry: function(){
+*        onExpiry: function(){  // callback after countdown to zero
 *            $(this).css('color','red');
+*            console.log('Countdown complete');
 *        }
 *    });
 *
@@ -31,8 +33,8 @@
             duration: null,
             layout: 'Time Remaining: $m:$s',
             display2DigitMinutes: false,
-            onExpiry: null,
-            onTick: null
+            onTick: null,
+            onExpiry: null
         };
         
         $.extend(this.defaultOptions);
@@ -159,8 +161,8 @@
             
             if (instanceOnTick) {
                 var overTickPoint = (instanceOnTick.fireIfUnderTickPoint === false),
-                    durationAtTickPoint = (instance.options.duration === instanceOnTick.tickPoint)
-                    durationAtOrUnderTickPoint = (instance.options.duration <= instanceOnTick.tickPoint),
+                    durationAtTickPoint = (instance.options.duration === instanceOnTick.secondsRemaining)
+                    durationAtOrUnderTickPoint = (instance.options.duration <= instanceOnTick.secondsRemaining),
                     tickNotFired = (instance.options.tickActionHasFired == false);
                 
                 if (overTickPoint && durationAtTickPoint || !overTickPoint && durationAtOrUnderTickPoint && tickNotFired) {
@@ -331,6 +333,7 @@
             $(target).html(instance.options.layout);
         },
         
+        // in case needed later    
         destroyCountdown: function(target) {
             var $target = $(target);
             
@@ -354,4 +357,3 @@
     };
 
 })(jQuery);
-
