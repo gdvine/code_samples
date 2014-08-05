@@ -15,7 +15,7 @@
 *            secondsRemaining: 898,
 *            fireIfUnderTickPoint: true,
 *            action: function() {
-*                console.log('We have reached 898 seconds remaining.');
+*                console.log('We have reached ' + secondsRemaining + ' seconds remaining.');
 *            }
 *        },
 *        onExpiry: function(){  // callback after countdown to zero
